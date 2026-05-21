@@ -20,6 +20,9 @@ body {
     max-width: 920px;
     margin: 0 auto;
     padding: 28px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Cabeçalho e Navegação */
@@ -91,6 +94,7 @@ main {
     display: flex;
     align-items: flex-start;
     gap: 24px;
+    flex: 1;
 }
 
 .conteudo-principal {
@@ -337,4 +341,8 @@ footer {
         width: 100%;
         margin-right: 0;
     }
+}
+
+.text-red-500 {
+    color: #ef4444;
 }
