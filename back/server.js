@@ -1,0 +1,21 @@
+import express from 'express'
+import { router as messagesRouter } from "./routes/messages.js"
+
+const server = express()
+const PORT = process.env.PORT || 3000
+
+server.use(express.json())
+
+server.get("/health", (req, res) => {
+    res.json({ status: "ok" })
+})
+
+server.get("/version", (req, res) => {
+    res.json({ version: "1.0.0" })
+})
+
+server.use('/messages', messagesRouter)
+
+server.listen(PORT, () => {
+    console.log(`Escutando pelo express na porta ${PORT}!`)
+})
