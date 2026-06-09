@@ -4,7 +4,7 @@ import { createMessage, listMessages, getMessagesByIndex, readMessage, deleteMes
 
 const emailBlacklist = ["samuel@gmail.com"]
 
-export const messageCreateController = (req, res) => {
+export const messageCreateController = async (req, res) => {
     const data = req.body
     if (!data) {
         throw Error("Sem corpo na mensagem")
@@ -23,7 +23,7 @@ export const messageCreateController = (req, res) => {
         return
     }
     try {
-        const finalIndex = createMessage(data)
+        const finalIndex = await createMessage(data)
         res.json({ status: "ok", index: finalIndex })
     } catch (err) {
         res.status(400).send(err.message)
@@ -31,8 +31,8 @@ export const messageCreateController = (req, res) => {
     }
 }
 
-export const getMessagesController = (req, res) => {
-    const messages = listMessages()
+export const getMessagesController = async (req, res) => {
+    const messages = await listMessages()
     res.json(messages)
 }
 

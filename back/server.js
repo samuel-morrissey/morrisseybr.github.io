@@ -4,6 +4,7 @@ import { router as messagesRouter } from "./routes/messages.js"
 const server = express()
 const PORT = process.env.PORT || 3000
 
+
 server.use(express.json())
 
 server.get("/health", (req, res) => {
