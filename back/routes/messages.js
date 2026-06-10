@@ -1,16 +1,16 @@
 import express from "express"
-import { messageCreateController, getMessagesController, getMessageByIndex, patchMessage, deleteMessage } from '../controllers/messages.js'
+import { postMessagesController, getMessagesController, getMessagesByIdController, patchMessagesController, deleteMessagesController } from '../controllers/messages.js'
 
 const router = express.Router()
 
-router.post('/', messageCreateController)
+router.post('/', postMessagesController)
 
 router.get("/", getMessagesController)
 
-router.get("/:index", getMessageByIndex)
+router.get("/:id", getMessagesByIdController)
 
-router.patch("/:index", patchMessage)
+router.patch("/:id", patchMessagesController)
 
-router.delete("/:index", deleteMessage)
+router.delete("/:id", deleteMessagesController)
 
 export { router }

@@ -1,34 +1,31 @@
-import postgres from "postgres"
-
-// Mensagens (message)
-
-const messages = []
-
-const sql = postgres("postgres://postgres:postgres@localhost:5432/db", { max: 5 })
+import { getMessages, getMessageById, saveMessage, updateMessage, deleteMessageById } from "../repositories/messages.js"
 
 export async function createMessage(data) {
-    messages.push({ ...data, readed: false })
-    await sql`INSERT INTO messages ${sql(data)}`
-    return messages.length - 1
+    const message = await saveMessage({ name: data.name, email: data.email, message: data.message })
+    return message.id
 }
 
 export async function listMessages() {
-    const messages = await sql`SELECT * FROM messages`
+    const messages = await getMessages()
     return messages
 }
 
-export function getMessagesByIndex(index) {
-    return messages[index]
-}
-
-export function readMessage(index) {
-    const message = messages[index]
-    message.readed = true
-    messages[index] = message
+export async function findMessage(id) {
+    const message = await getMessageById(id)
     return message
 }
 
-export function deleteMessage(index) {
-    messages.splice(index, 1)
-    return messages.length
+export async function markMessageAsRead(id) {
+    const messages = await getMessageById(id)
+    const message = messages[0]
+    if (!message) {
+        throw Error("Messagem não encontrada")
+    }
+    message.read = true
+    const updatedMessage = await updateMessage({ id, name: message.name, email: message.email, message: message.message, read: message.read })
+    return updatedMessage
+}
+
+export async function deleteMessage(id) {
+    await deleteMessageById(id)
 }

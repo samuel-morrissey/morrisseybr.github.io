@@ -1,9 +1,9 @@
+import "dotenv/config"
 import express from 'express'
 import { router as messagesRouter } from "./routes/messages.js"
 
 const server = express()
 const PORT = process.env.PORT || 3000
-
 
 server.use(express.json())
 
@@ -12,7 +12,7 @@ server.get("/health", (req, res) => {
 })
 
 server.get("/version", (req, res) => {
-    res.json({ version: "1.0.0" })
+    res.json({ version: "2.0.0" })
 })
 
 server.use('/messages', messagesRouter)
