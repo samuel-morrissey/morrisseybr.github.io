@@ -1,6 +1,7 @@
 import "dotenv/config"
 import express from 'express'
 import { router as messagesRouter } from "./routes/messages.js"
+import { router as authRouter } from "./routes/auth.js"
 
 const server = express()
 const PORT = process.env.PORT || 3000
@@ -16,6 +17,7 @@ server.get("/version", (req, res) => {
 })
 
 server.use('/messages', messagesRouter)
+server.use('/auth', authRouter)
 
 server.listen(PORT, () => {
     console.log(`Escutando pelo express na porta ${PORT}!`)
