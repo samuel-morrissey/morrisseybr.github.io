@@ -32,5 +32,5 @@ server.use('/messages', messagesRouter)
 server.use('/auth', authRouter)
 
 server.listen(PORT, () => {
-    console.log(`Escutando pelo express na porta ${PORT}!`)
+    console.log(`Escutando pelo express na porta ${PORT}!!!`)
 })
