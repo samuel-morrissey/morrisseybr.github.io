@@ -5,10 +5,15 @@ services:
       - 3000:3000
     env_file:
       - .env.local
+    environment:
+      DATABASE_HOSTNAME: db
+      DATABASE_PORT: 5432
     depends_on:
       - db
   db:
     image: postgres:17
+    ports:
+      - 5432:5432
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: change-me

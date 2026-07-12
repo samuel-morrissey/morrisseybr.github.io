@@ -1,4 +1,4 @@
-import "dotenv/config"
+import "./config/env.js"
 import express from 'express'
 import { router as messagesRouter } from "./routes/messages.js"
 import { router as authRouter } from "./routes/auth.js"
